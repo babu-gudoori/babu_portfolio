@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conetent="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Babu Gudoori</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheet.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--projects-->
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--contact-->
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!--skills-iamges-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!---browser tap icon -fevicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/Images/fevicon.png"
+      style="border-radius: 100%"
+    />
+
+    <!--logo-navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  </head>
+
+  <body data-success="{{ success }}">
+    <script src="{{ url_for('static', filename='js/papaparse.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <header class="header">
+      <a href="#" id="logo" class="logo">Babu Gudoori</a>
+      <div class="navbar-container">
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+          ☰
+        </button>
+        <nav class="navbar" id="navbar">
+          <a href="#" onclick="showSection('home')" class="active">
+            <i class="fas fa-house"></i> Home
+          </a>
+          <a href="#" onclick="showSection('about')">
+            <i class="fas fa-user"></i> About
+          </a>
+          <a href="#" onclick="showSection('education')">
+            <i class="fas fa-graduation-cap"></i>Education
+          </a>
+          <a href="#" onclick="showSection('projects')">
+            <i class="fas fa-code"></i> Projects
+          </a>
+          <a href="#" onclick="showSection('skills')">
+            <i class="fas fa-lightbulb"></i> Skills
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1gnP03ZxZ1aDxV-ypHAy4YWdP1_fI0jt6/view?usp=drive_link"
+            target="_blank"
+          >
+            <i class="fas fa-file-alt"></i> Resume
+          </a>
+
+          <a href="#" onclick="showSection('contact')">
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home-section" class="home">
+      <div class="home-content">
+        <h1>
+          <span class="slide-left">Hi, I'm</span>
+          <span class="slide-up highlight"
+            >AI & Web Engineer | Data Analytics Enthusiast</span
+          >
+        </h1>
+
+        <!-- Hire Me Button -->
+        <button class="hire-me-button" onclick="toggleForm(true)">
+          Hire Me
+        </button>
+
+        <!-- Modal Form -->
+        <div id="hire-form-modal" class="modal-overlay">
+          <div class="modal-form dark-theme">
+            <span class="close-btn" onclick="toggleForm(false)">&times;</span>
+
+            <!-- ✅ Add action and method -->
+            <form class="hire-form" action="/submit" method="post">
+              <h3>SEND ME AN EMAIL</h3>
+              <p class="subheading">Let's Connect!</p>
+
+              <div class="form-row">
+                <!-- ✅ Add name attributes -->
+                <input type="text" name="name" placeholder="Name" required />
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Message"
+                rows="4"
+                required
+              ></textarea>
+
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="social-icons-vertical">
+          <a
+            href="https://linkedin.com/in/babu-gudoori-23a528230"
+            target="_blank"
+            title="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://github.com/babu-gudoori"
+            target="_blank"
+            title="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:babugudurigbk@gmail.com" title="Gmail">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://wa.me/917893044756" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="profile-container">
+        <div class="profile-image">
+          <img
+            src="{{ url_for('static', filename='Images/babu3-no bg.png') }}"
+          />
+        </div>
+      </div>
+    </section>
+    <!--About section-->
+    <!-- About section -->
+    <section id="about-section" class="about" style="display: none">
+      <div class="about-content">
+        <h2 class="section-title">Powered by AI, Data & Design</h2>
+        <p>
+          Hello! I'm <strong>Babu Gudoori</strong>, an enthusiastic
+          <strong>AI & Web Engineer</strong> with a strong foundation in
+          <strong>Data Analytics</strong>,
+          <strong>Frontend Development</strong>, and
+          <strong>Machine Learning</strong>. My expertise spans across building
+          responsive web applications, creating interactive dashboards using
+          <strong>Tableau</strong> and <strong>Power BI</strong>, and developing
+          smart solutions with <strong>Generative AI</strong> and
+          <strong>Data Science</strong>.<br /><br />
+          I thrive on turning data into actionable insights and bringing ideas
+          to life through intelligent design and functionality. Beyond coding, I
+          enjoy mentoring peers, exploring emerging technologies, and solving
+          real-world challenges through innovation and thoughtful development.
+        </p>
+
+        <!-- Interests -->
+        <div class="interests">
+          <h2 class="section-title">Tech Passions</h2>
+
+          <div class="interests-grid">
+            <!-- Software Engineering -->
+            <div class="icon-box">
+              <i class="ri-code-s-slash-line" style="color: #9b59b6"></i>
+              <h3>Software Engineering</h3>
+            </div>
+
+            <!-- Web Development -->
+            <div class="icon-box">
+              <i class="ri-global-line" style="color: #1c7d32"></i>
+              <!-- Better icon for web -->
+              <h3>Web Development</h3>
+            </div>
+
+            <!-- Data Analyst -->
+            <div class="icon-box">
+              <i class="ri-bar-chart-2-line" style="color: #005eff"></i>
+              <h3>Data Analyst</h3>
+            </div>
+
+            <!-- Data Scientist -->
+            <div class="icon-box">
+              <i class="ri-line-chart-line" style="color: #e74c3c"></i>
+              <h3>Data Scientist</h3>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="icon-box">
+              <i class="ri-bubble-chart-line" style="color: #f39c12"></i>
+              <h3>Machine Learning</h3>
+            </div>
+
+            <!-- Generative AI -->
+            <div class="icon-box">
+              <i class="ri-robot-line" style="color: #8e44ad"></i>
+              <!-- More symbolic of Gen AI -->
+              <h3>Generative AI</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Education-section-start-->
+    <section id="education-section" class="education-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Education</h2>
+        </div>
+
+        <!-- Education Cards -->
+        <div class="edu-cards">
+          <!-- B.Tech -->
+          <div
+            class="edu-card"
+            style="
+              background-image: url('/static/Images/indur\ college.jpg');
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <!--img src="/static/Images/indur collegeaa.jpg" alt="Indur College"-->
+            <h3>B.Tech in CSE (AI & ML)</h3>
+            <p class="edu-institute">
+              Indur Institute of Engineering and Technology
+            </p>
+            <span class="edu-date">2021 - 2025 | CGPA: 6.92</span>
+            <h4>Relevant Coursework</h4>
+            <ul>
+              <li>
+                Major Project: Sentiment Analysis Study of Human Thoughts using
+                Machine Learning Techniques
+              </li>
+              <li>
+                Minor Project: Political Tweet Sentiment Analysis for Public
+                Opinion Polling
+              </li>
+              <!--<li>Machine Learning</li>
+            <li>Web Development</li>
+            <li>Java OOPs</li>
+            <li>Artificial Intelligence</li>-->
+            </ul>
+          </div>
+
+          <!-- Intermediate -->
+          <div
+            class="edu-card"
+            style="
+              background-image: url('/static/Images/govt\ junior\ college.jpg');
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <h3>Intermediate - MPC</h3>
+            <p class="edu-institute">Govt Junior College, Mustabad</p>
+            <span class="edu-date">2019 - 2020 | 63.6%</span>
+            <h4>Relevant Subjects</h4>
+            <ul>
+              <li>Mathematics</li>
+              <li>Physics</li>
+              <li>Telugu</li>
+              <li>English</li>
+            </ul>
+          </div>
+
+          <!-- SSC -->
+          <div
+            class="edu-card"
+            style="
+              background-image: url('/static/Images/zphs\ school.jpg');
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <h3>SSC</h3>
+            <p class="edu-institute">Z.P. High School, Gudem</p>
+            <span class="edu-date">2017 - 2018 | GPA: 6.7</span>
+            <h4>Relevant Subjects</h4>
+            <ul>
+              <li>Mathematics</li>
+              <li>Telugu</li>
+              <li>Science, Social, English</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Certificates Section -->
+        <div class="section-title" style="margin-top: 60px">
+          <h2>Online Certifications</h2>
+        </div>
+
+        <div class="certificates">
+          <!-- Certificate 1 -->
+          <!-- Certificate Card with Logo Only -->
+          <a
+            href="https://drive.google.com/file/d/1Q3FJl6SIRmyZ7W4ovKAtN_PwEVXKtx3E/view?usp=drivesdk"
+            target="_blank"
+            class="certificate-card"
+            title="View Certificate"
+          >
+            <img
+              src="https://brainovision.in/assets/img/bovlogo2.svg"
+              alt="Brainovision Logo"
+            />
+          </a>
+
+          <!-- You can add more certificate cards here -->
+        </div>
+      </div>
+    </section>
+
+    <!--Education-section-end-->
+
+    <!-- start-project-section -->
+    <section class="projects-section" id="projects-section">
+      <div class="projects-container">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+          <a
+            href="{{ url_for('show_portfolio_project') }}"
+            class="project-card"
+          >
+            <div class="card-image">
+              <img
+                src="{{ url_for('static', filename='Images/portfolioproject.png') }}"
+                alt="My Portfolio"
+              />
+            </div>
+            <h3>Portfolio</h3>
+            <div class="card-content">
+              <h3>My Portfolio</h3>
+              <p>Personal portfolio showcasing skills and resume.</p>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a
+            href="{{ url_for('show_aichatbot_project') }}"
+            class="project-card"
+          >
+            <div class="card-image">
+              <img src="/static/Images/aichatbot.png" alt="AI Chatbot" />
+            </div>
+            <h3>AI Chatbot</h3>
+            <div class="card-content">
+              <h3>AI Chatbot</h3>
+              <p>Chatbot using Gemini + DeepSeek APIs.</p>
+            </div>
+          </a>
+
+          <!-- Project 3 -->
+          <a href="{{ url_for('show_aiagent_project') }}" class="project-card">
+            <div class="card-image">
+              <img src="/static/Images/AI intelligent.webp" alt="AI Agent" />
+            </div>
+            <h3>AI Agent YouTube</h3>
+            <div class="card-content">
+              <h3>AI Agent</h3>
+              <p>Voice-controlled YouTube song player.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Start Skills Section -->
+    <section id="skills-section" class="skills">
+      <div class="container">
+        <div class="section-title">
+          <h2>Tech Stack_____</h2>
+        </div>
+
+        <div class="row">
+          <!-- Languages and Databases -->
+          <div
+            class="col-md-12 mt-4 icon-box"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            style="background: #aedc978c"
+          >
+            <h4 style="text-align: left; color: #000000c5">
+              Languages and Databases
+            </h4>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+              "
+            >
+              <img
+                src="https://www.vectorlogo.zone/logos/python/python-horizontal.svg"
+                height="60"
+                alt="Python"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/java/java-horizontal.svg"
+                height="60"
+                alt="Java"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-ar21.svg"
+                height="60"
+                alt="HTML5"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"
+                height="60"
+                alt="CSS3"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/javascript/javascript-horizontal.svg"
+                height="60"
+                alt="JavaScript"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg"
+                height="60"
+                alt="MySQL"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg"
+                height="60"
+                alt="R"
+              />
+            </div>
+          </div>
+
+          <!-- Frameworks & Libraries -->
+          <div
+            class="col-md-12 mt-4 icon-box"
+            data-aos="fade-up"
+            data-aos-delay="150"
+            style="background: #aedc978c"
+          >
+            <h4 style="text-align: left; color: #09203a">
+              Frameworks & Libraries
+            </h4>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+              "
+            >
+              <img
+                src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-ar21.svg"
+                height="60"
+                alt="Django"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg"
+                alt="Flask"
+                height="60"
+                width="160"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg"
+                height="60"
+                alt="React"
+              />
+              <!--<img
+                src="https://www.vectorlogo.zone/logos/opencv/opencv-ar21.svg"
+                height="60"
+                alt="OpenCV"
+              />-->
+              <img
+                src="https://www.vectorlogo.zone/logos/numpy/numpy-ar21.svg"
+                height="60"
+                alt="NumPy"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/usepanda/usepanda-ar21.svg"
+                height="60"
+                alt="Pandas"
+              />
+              <img
+                src="https://matplotlib.org/_static/logo2_compressed.svg"
+                height="60"
+                alt="Matplotlib"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
+                height="60"
+                alt="Scikit-learn"
+              />
+              <img
+                src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg"
+                height="60"
+                alt="Seaborn"
+              />
+            </div>
+          </div>
+
+          <!-- Deployment & Hosting -->
+          <div
+            class="col-md-12 mt-4 icon-box"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            style="background: #aedc978c"
+          >
+            <h4 style="text-align: left; color: #09203a">
+              Deployment & Hosting
+            </h4>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+              "
+            >
+              <img
+                src="https://www.vectorlogo.zone/logos/github/github-ar21.svg"
+                height="60"
+                alt="GitHub"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg"
+                height="60"
+                alt="Git"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg"
+                height="60"
+                alt="Google Cloud"
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg"
+                height="60"
+                alt="Heroku"
+              />
+            </div>
+          </div>
+
+          <!-- Tools & IDEs -->
+          <div
+            class="col-md-12 mt-4 icon-box"
+            data-aos="fade-up"
+            data-aos-delay="250"
+            style="background: #aedc978c"
+          >
+            <h4 style="text-align: left; color: #09203a">Tools & IDEs</h4>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+              "
+            >
+              <img
+                src="https://www.vectorlogo.zone/logos/jupyter/jupyter-ar21.svg"
+                height="60"
+                alt="Jupyter Notebook"
+              />
+              <img
+                src="https://img.icons8.com/fluent/96/visual-studio-code-2019.png"
+                height="60"
+                alt="VS Code"
+              />
+              <img
+                src="https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"
+                height="60"
+                alt="Excel"
+              />
+              <img
+                src="https://img.icons8.com/color/96/tableau-software.png"
+                height="60"
+                alt="Tableau"
+              />
+              <img
+                src="https://img.icons8.com/color/96/000000/power-bi.png"
+                height="60"
+                alt="Power BI"
+              />
+            </div>
+          </div>
+          <!-- Productivity Tools -->
+          <div
+            class="col-md-12 mt-4 icon-box"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            style="background: #aedc978c"
+          >
+            <h4 style="text-align: left; color: #09203a">Productivity Tools</h4>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+              "
+            >
+              <img
+                src="https://img.icons8.com/color/96/microsoft-word-2019--v1.png"
+                height="60"
+                alt="MS Word"
+              />
+              <img
+                src="https://img.icons8.com/color/96/microsoft-powerpoint-2019--v1.png"
+                height="60"
+                alt="PowerPoint"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Skills Section -->
+
+    <!-- Start Contact Section -->
+    <section id="contact-section" class="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+
+        <!-- Contact Info Boxes -->
+        <div class="row contact-info-boxes">
+          <div class="info-box">
+            <i class="bx bx-map"></i>
+            <h3>Address</h3>
+            <p>Gudem, Rajanna Siricilla, Telangana - 505404</p>
+          </div>
+
+          <div class="info-box">
+            <i class="bx bx-share-alt"></i>
+            <h3>Social</h3>
+            <div class="social-links">
+              <a
+                href="https://www.linkedin.com/in/babu-gudoori-23a528230"
+                target="_blank"
+                class="linkedin"
+              >
+                <i class="bx bxl-linkedin"></i>
+              </a>
+              <a
+                href="mailto:babugudurigbk@gmail.com"
+                target="_blank"
+                class="google"
+              >
+                <i class="bx bxl-google"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/babu_geesa/"
+                target="_blank"
+                class="instagram"
+              >
+                <i class="bx bxl-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="bx bx-envelope"></i>
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:babugudurigbk@gmail.com" target="_blank"
+                >babugudurigbk@gmail.com</a
+              >
+            </p>
+            <p>
+              <a href="mailto:babugeesabsns@gmail.com" target="_blank"
+                >babugeesabsns@gmail.com</a
+              >
+            </p>
+          </div>
+
+          <div class="info-box">
+            <i class="bx bx-phone-call"></i>
+            <h3>Phone</h3>
+            <p class="phone-contact">
+              <a href="tel:+917893044756" class="phone-link">+91 7893044756</a>
+              <a
+                href="https://wa.me/917893044756"
+                target="_blank"
+                class="whatsapp-link"
+              >
+                <i class="bx bxl-whatsapp"></i>
+              </a>
+            </p>
+          </div>
+        </div>
+        <!-- ✅ Add action and method -->
+
+        <div class="contact-form">
+          <form class="hire-form" action="/submit" method="post">
+            <h3>SEND ME AN EMAIL</h3>
+            <p class="subheading">Let's Connect!</p>
+
+            <div class="form-row">
+              <!-- ✅ Add name attributes -->
+              <input type="text" name="name" placeholder="Name" required />
+              <input type="email" name="email" placeholder="Email" required />
+            </div>
+
+            <input type="text" name="subject" placeholder="Subject" required />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="4"
+              required
+            ></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- End Contact Section -->
+
+    <!-- Success Popup -->
+    <div id="success-popup" class="popup-overlay">
+      <div class="popup-content">
+        <span class="popup-icon">✅</span>
+        <h3>Thank You!</h3>
+        <p>Your message has been sent successfully.</p>
+      </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-section" class="modal-overlay" style="display: none">
+      <div class="modal-form dark-theme">
+        <span class="close-btn" onclick="toggleAdmin(false)">&times;</span>
+        <form id="admin-login-form">
+          <h3>Admin Login</h3>
+          <input
+            type="text"
+            id="admin-username"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            id="admin-password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p id="login-error" style="color: red; display: none">
+          Invalid credentials
+        </p>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="admin-dashboard" class="modal-overlay" style="display: none">
+      <div
+        class="modal-form dark-theme"
+        style="width: 80%; max-height: 80vh; overflow-y: auto"
+      >
+        <span class="close-btn" onclick="toggleDashboard(false)">&times;</span>
+        <h3 class="dashboar-h3">Hire Requests</h3>
+        <table id="hire-requests-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- chatbot- assistant start -->
+    <div class="chatbot-container">
+      <!-- Floating icon button -->
+      <div class="chatbot-toggle" onclick="toggleChatbot()">
+        <span class="emoji-icon">🤖</span>
+        <span id="introMessage" class="intro"></span>
+      </div>
+
+      <!-- Hidden chatbot box -->
+      <div class="chatbot-box" id="chatbotBox">
+        <div id="chat-box"></div>
+        <div class="input-area">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Ask me something..."
+            onkeydown="if(event.key === 'Enter') sendMessage();"
+          />
+
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- chatbot- assistant end-->
+  </body>
+</html>
