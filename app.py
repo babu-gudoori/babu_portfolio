@@ -2,6 +2,41 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
+import psycopg2
+import csv
+from urllib.parse import urlparse
+# Load .env file
+load_dotenv()
+
+app = Flask(__name__)
+
+# Email config
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = app.config['MAIL_USERNAME']
+mail = Mail(app)
+
+# Parse the DATABASE_URL
+url = urlparse(os.getenv('DATABASE_URL'))
+
+# PostgreSQL connection using psycopg2
+db = psycopg2.connect(
+    dbname=url.path[1:],    # removes leading '/'
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port,
+    sslmode='require'  # Add this line explicitly
+)
+cursor = db.cursor()
+#local host in development
+"""from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_mail import Mail, Message
+from dotenv import load_dotenv
+import os
 import mysql.connector
 import csv
 
@@ -26,7 +61,7 @@ db = mysql.connector.connect(
     password=os.getenv("DB_PASSWORD"),
     database=os.getenv("DB_NAME")
 )
-cursor = db.cursor()
+cursor = db.cursor()"""
 
 # Load chatbot data
 qa_data = {}
