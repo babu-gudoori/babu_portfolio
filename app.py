@@ -66,7 +66,7 @@ cursor = db.cursor()"""
 # Load chatbot data
 qa_data = {}
 try:
-    with open('static/chatbot-dataset.csv', encoding='utf-8') as f:
+    with open('/static/chatbot-dataset.csv', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             question = row['question'].lower().strip()
